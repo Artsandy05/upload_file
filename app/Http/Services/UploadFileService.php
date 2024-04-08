@@ -2,10 +2,14 @@
 
 namespace App\Http\Services;
 
+use Illuminate\Http\Request;
+
 class UploadFileService
 {
-  public function upload($request): bool
+  public function upload($request): array
   {
+    $response = ['status' => false, 'path' => null];
+
     if ($request->validated()) {
       // Get the original file name
       $originalFileName = $request->file('file')->getClientOriginalName();
@@ -15,10 +19,18 @@ class UploadFileService
 
       // Check if file was successfully stored
       if ($path) {
-        return true;
+        $response['status'] = true;
+        $response['data'] = [$path, $originalFileName];
       }
     }
 
-    return false; // File upload failed
+    return $response;
+  }
+
+  public function getUploadStatusMessage(bool $isSuccessUpload, $data): string
+  {
+    [$path, $originalFileName] = $data;
+    $message = $isSuccessUpload ? $originalFileName . ' to ' . $path : 'Failed to upload file.';
+    return $message;
   }
 }

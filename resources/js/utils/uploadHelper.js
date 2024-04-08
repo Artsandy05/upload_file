@@ -7,7 +7,7 @@ export async function upload(data) {
 
     const response = await axios.post('/api/upload-file', formData, );
 
-    console.log('File uploaded successfully:', response.data);
+    console.log('Successfully uploaded:', response.data);
   } catch (error) {
     console.error('Error uploading file:', error);
   }

@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\UploadFileService;
-use App\Http\Services\UploadRedirectService;
 use App\Http\Requests\UploadFileRequest;
+use Illuminate\Http\Request;
 
 class UploadFileController extends Controller
 {
   protected $uploadFileService;
-  protected $uploadRedirectService;
 
-  public function __construct(UploadFileService $uploadFileService, UploadRedirectService $uploadRedirectService)
+  public function __construct(UploadFileService $uploadFileService)
   {
     $this->uploadFileService = $uploadFileService;
-    $this->uploadRedirectService = $uploadRedirectService;
   }
 
   public function uploadPage()
@@ -24,7 +22,7 @@ class UploadFileController extends Controller
 
   public function uploadFile(UploadFileRequest $request)
   {
-    $isSuccessUpload = $this->uploadFileService->upload($request);
-    return $this->uploadRedirectService->redirectToUploadPage($isSuccessUpload);
+    $response = $this->uploadFileService->upload($request);
+    return $this->uploadFileService->getUploadStatusMessage($response['status'], $response['data']);
   }
 }

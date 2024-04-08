@@ -5210,7 +5210,7 @@ function _upload() {
           return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/upload-file', formData);
         case 5:
           response = _context.sent;
-          console.log('File uploaded successfully:', response.data);
+          console.log('Successfully uploaded:', response.data);
           _context.next = 12;
           break;
         case 9:
@@ -9720,7 +9720,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".uploadForm{\r\n  width: 30%;\r\n  margin: auto;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".uploadForm{\r\n  margin: auto;\r\n  width: 30%;\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
